@@ -1,39 +1,105 @@
 namespace Org.BouncyCastle.Bcpg
 {
-    /**
-    * Basic PGP signature sub-packet tag types.
-    */
+    /// <summary>Basic PGP signature sub-packet tag types.</summary>
+    /// <remarks>
+    /// <para>
+    /// NOTE: Subpacket types outside of what is defined in this Enum are possible.
+    /// Use <see cref="System.Enum.IsDefined{TEnum}(TEnum)"/> to confirm.<br/>
+    /// An implementation SHOULD ignore any subpacket of a type that it does not recognize,
+    /// unless <see cref="SignatureSubpacket.IsCritical"/> is <see langword="true"/>,
+    /// in which case the evaluator SHOULD consider the signature to be in error.
+    /// </para>
+    /// <para>Defined in <see href="https://www.rfc-editor.org/rfc/rfc4880#section-5.2.3.1">RFC4880, section 5.2.3.1</see>.</para>
+    /// </remarks>
     public enum SignatureSubpacketTag
     {
-        CreationTime = 2,						// signature creation time
-        ExpireTime = 3,							// signature expiration time
-        Exportable = 4,							// exportable certification
-        TrustSig = 5,							// trust signature
-        RegExp = 6,								// regular expression
-        Revocable = 7,							// revocable
-        KeyExpireTime = 9,						// key expiration time
-        Placeholder = 10,						// placeholder for backward compatibility
-        PreferredSymmetricAlgorithms = 11,		// preferred symmetric algorithms
-        RevocationKey = 12,						// revocation key
-        IssuerKeyId = 16,						// issuer key ID
-        NotationData = 20,						// notation data
-        PreferredHashAlgorithms = 21,			// preferred hash algorithms
-        PreferredCompressionAlgorithms = 22,	// preferred compression algorithms
-        KeyServerPreferences = 23,				// key server preferences
-        PreferredKeyServer = 24,				// preferred key server
-        PrimaryUserId = 25,						// primary user id
-        PolicyUrl = 26,							// policy URL
-        KeyFlags = 27,							// key flags
-        SignerUserId = 28,						// signer's user id
-        RevocationReason = 29,                  // reason for revocation
-        Features = 30,                          // features
-        SignatureTarget = 31,                   // signature target
-        EmbeddedSignature = 32,					// embedded signature
-        IssuerFingerprint = 33,                 // issuer key fingerprint
+        /// <summary>Signature creation time</summary>
+        CreationTime = 2,
+
+        /// <summary>Signature expiration time</summary>
+        ExpireTime = 3,
+
+        /// <summary>Exportable certification</summary>
+        Exportable = 4,
+
+        /// <summary>Trust signature</summary>
+        TrustSig = 5,
+
+        /// <summary>Regular expression</summary>
+        RegExp = 6,
+
+        /// <summary>Revocable</summary>
+        Revocable = 7,
+
+        /// <summary>Key expiration time</summary>
+        KeyExpireTime = 9,
+
+        /// <summary>Placeholder for backward compatibility</summary>
+        Placeholder = 10,
+
+        /// <summary>Preferred symmetric algorithms</summary>
+        PreferredSymmetricAlgorithms = 11,
+
+        /// <summary>Revocation key</summary>
+        RevocationKey = 12,
+
+        /// <summary>Issuer key ID</summary>
+        IssuerKeyId = 16,
+
+        /// <summary>Notation data</summary>
+        NotationData = 20,
+
+        /// <summary>Preferred hash algorithms</summary>
+        PreferredHashAlgorithms = 21,
+
+        /// <summary>Preferred compression algorithms</summary>
+        PreferredCompressionAlgorithms = 22,
+
+        /// <summary>Key server preferences</summary>
+        KeyServerPreferences = 23,
+
+        /// <summary>Preferred key server</summary>
+        PreferredKeyServer = 24,
+
+        /// <summary>Primary user id</summary>
+        PrimaryUserId = 25,
+
+        /// <summary>Policy URI</summary>
+        PolicyUrl = 26,
+
+        /// <summary>Key flags</summary>
+        KeyFlags = 27,
+
+        /// <summary>Signer's user id</summary>
+        SignerUserId = 28,
+
+        /// <summary>Reason for revocation</summary>
+        RevocationReason = 29,
+
+        /// <summary>Features</summary>
+        Features = 30,
+
+        /// <summary>Signature target</summary>
+        SignatureTarget = 31,
+
+        /// <summary>Embedded signature</summary>
+        EmbeddedSignature = 32,
+
+        /// <summary>Issuer key fingerprint</summary>
+        IssuerFingerprint = 33,
+
         //PreferredAeadAlgorithms = 34,         // RESERVED since crypto-refresh-05
-        IntendedRecipientFingerprint = 35,      // intended recipient fingerprint
-        AttestedCertifications = 37,            // attested certifications (RESERVED)
-        KeyBlock = 38,                          // Key Block (RESERVED)
-        PreferredAeadAlgorithms = 39,           // preferred AEAD algorithms
+
+        /// <summary>Intended recipient fingerprint</summary>
+        IntendedRecipientFingerprint = 35,
+
+        /// <summary>(RESERVED) Attested certifications</summary>
+        AttestedCertifications = 37,
+
+        /// <summary>(RESERVED) Key Block</summary>
+        KeyBlock = 38,
+
+        /// <summary>Preferred AEAD algorithms</summary>
+        PreferredAeadAlgorithms = 39,
     }
 }
