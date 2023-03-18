@@ -6,6 +6,9 @@ namespace Org.BouncyCastle.Utilities
     /// <summary> General string utilities.</summary>
     public static class Strings
     {
+        private static readonly UTF8Encoding utf8NoBomThrowInvalid =
+            new (encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
+
         internal static bool IsOneOf(string s, params string[] candidates)
         {
             foreach (string candidate in candidates)
@@ -85,30 +88,30 @@ namespace Org.BouncyCastle.Utilities
 
         public static string FromUtf8ByteArray(byte[] bytes)
         {
-            return Encoding.UTF8.GetString(bytes);
+            return Strings.FromUtf8ByteArray(bytes, 0, bytes.Length);
         }
 
         public static string FromUtf8ByteArray(byte[] bytes, int index, int count)
         {
-            return Encoding.UTF8.GetString(bytes, index, count);
+            return utf8NoBomThrowInvalid.GetString(bytes, index, count);
         }
 
         public static byte[] ToUtf8ByteArray(char[] cs)
         {
-            return Encoding.UTF8.GetBytes(cs);
+            return utf8NoBomThrowInvalid.GetBytes(cs);
         }
 
         public static byte[] ToUtf8ByteArray(string s)
         {
-            return Encoding.UTF8.GetBytes(s);
+            return utf8NoBomThrowInvalid.GetBytes(s);
         }
 
 #if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         public static byte[] ToUtf8ByteArray(ReadOnlySpan<char> cs)
         {
-            int count = Encoding.UTF8.GetByteCount(cs);
+            int count = utf8NoBomThrowInvalid.GetByteCount(cs);
             byte[] bytes = new byte[count];
-            Encoding.UTF8.GetBytes(cs, bytes);
+            utf8NoBomThrowInvalid.GetBytes(cs, bytes);
             return bytes;
         }
 #endif
