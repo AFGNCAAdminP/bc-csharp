@@ -247,7 +247,7 @@ namespace Org.BouncyCastle.Bcpg
                 header = headerList[0];
             }
 
-			clearText = "-----BEGIN PGP SIGNED MESSAGE-----".Equals(header);
+			clearText = "-----BEGIN PGP SIGNED MESSAGE-----".Equals(header, StringComparison.Ordinal);
             newLineFound = true;
 
 			return headerFound;
