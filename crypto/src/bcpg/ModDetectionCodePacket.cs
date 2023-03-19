@@ -13,7 +13,7 @@ namespace Org.BouncyCastle.Bcpg
             BcpgInputStream bcpgIn)
         {
 			if (bcpgIn == null)
-				throw new ArgumentNullException("bcpgIn");
+				throw new ArgumentNullException(nameof(bcpgIn));
 
 			this.digest = new byte[20];
             bcpgIn.ReadFully(this.digest);
@@ -23,7 +23,7 @@ namespace Org.BouncyCastle.Bcpg
             byte[] digest)
         {
 			if (digest == null)
-				throw new ArgumentNullException("digest");
+				throw new ArgumentNullException(nameof(digest));
 
 			this.digest = (byte[]) digest.Clone();
         }
