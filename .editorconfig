@@ -21,3 +21,5 @@ indent_size = 2
 dotnet_diagnostic.CA1805.severity = suggestion
 # CA1852: Seal internal types
 dotnet_diagnostic.CA1852.severity = suggestion
+# CS1591: Missing XML comment for publicly visible type or member
+dotnet_diagnostic.CS1591.severity = suggestion
