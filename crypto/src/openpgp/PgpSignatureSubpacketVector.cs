@@ -11,7 +11,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
     {
         public static PgpSignatureSubpacketVector FromSubpackets(SignatureSubpacket[] packets)
         {
-            return new PgpSignatureSubpacketVector(packets ?? new SignatureSubpacket[0]);
+            return new PgpSignatureSubpacketVector(packets ?? Array.Empty<SignatureSubpacket>());
         }
 
         private readonly SignatureSubpacket[] packets;
