@@ -114,7 +114,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
             for (int i = 0; i != notations.Length; i++)
             {
                 NotationData notation = notations[i];
-                if (notation.GetNotationName().Equals(notationName))
+                if (notation.GetNotationName().Equals(notationName, StringComparison.Ordinal))
                 {
                     notationsWithName.Add(notation);
                 }
