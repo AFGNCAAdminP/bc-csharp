@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>net6.0;netstandard2.0;net462</TargetFrameworks>
     <RootNamespace>Org.BouncyCastle</RootNamespace>
     <AssemblyOriginatorKeyFile>..\..\BouncyCastle.NET.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
-	<NoWarn>1591</NoWarn>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <LangVersion>10.0</LangVersion>
 
     <AssemblyName>BouncyCastle.Cryptography</AssemblyName>
     <AssemblyTitle>BouncyCastle.NET Cryptography ($(TargetFramework))</AssemblyTitle>
@@ -21,8 +23,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>https://www.bouncycastle.org/csharp/</PackageReleaseNotes>
     <PackageTags>bouncycastle cryptography dtls encryption open-source openpgp post-quantum security tls</PackageTags>
-	<Product>BouncyCastle.NET</Product>
-	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	  <Product>BouncyCastle.NET</Product>
+	  <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <Title>BouncyCastle.NET Cryptography</Title>
   </PropertyGroup>
 
@@ -34,11 +36,11 @@
 
   <!--Source-Level Debugging-->
   <PropertyGroup>
-	<!-- Any custom target adding things to the Compile item group needs BeforeTargets="BeforeCompile".	-->
+	  <!-- Any custom target adding things to the Compile item group needs BeforeTargets="BeforeCompile".	-->
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
     <!-- Tell SourceLink to use this remote to derive the published git repository URL and source links. -->
-    <GitRepositoryRemoteName>public</GitRepositoryRemoteName>
+    <GitRepositoryRemoteName>origin</GitRepositoryRemoteName>
 
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -49,10 +51,10 @@
     <EnablePackageValidation>true</EnablePackageValidation>
     <PackageValidationBaselineVersion>2.0.0</PackageValidationBaselineVersion>
 
-	<!-- In case we disable signing for local builds, ignore identity mismatch with baseline version. -->
+	  <!-- In case we disable signing for local builds, ignore identity mismatch with baseline version. -->
     <NoWarn Condition="'$(SignAssembly)' != 'true'">$(NoWarn);CP0003</NoWarn>
 
-	<!--
+	  <!--
 	  We added Span-based variant methods to several APIs. Code that uses those methods or implements the
 	  affected interfaces (or abstract classes) will not be backward compatible. There are also several
 	  methods in DotNetUtilities dealing with ECDsa which is only available from net47.
@@ -60,7 +62,7 @@
 	  TODO: Use suppressions for each individual case of version-dependent methods.
     -->
     <NoWarn>$(NoWarn);CP0002;CP0005;CP0006</NoWarn>
-    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -94,6 +96,10 @@
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.119">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="PolySharp" Version="1.12.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
 
