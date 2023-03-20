@@ -7,8 +7,7 @@ using Org.BouncyCastle.Utilities.Zlib;
 namespace Org.BouncyCastle.Bcpg.OpenPgp
 {
 	/// <remarks>Class for producing compressed data packets.</remarks>
-	public class PgpCompressedDataGenerator
-		: IStreamGenerator
+	public class PgpCompressedDataGenerator : IStreamGenerator
 	{
 		private readonly CompressionAlgorithmTag algorithm;
 		private readonly int compression;
@@ -16,15 +15,12 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 		private Stream dOut;
 		private BcpgOutputStream pkOut;
 
-		public PgpCompressedDataGenerator(
-			CompressionAlgorithmTag algorithm)
+		public PgpCompressedDataGenerator(CompressionAlgorithmTag algorithm)
 			: this(algorithm, JZlib.Z_DEFAULT_COMPRESSION)
 		{
 		}
 
-		public PgpCompressedDataGenerator(
-			CompressionAlgorithmTag	algorithm,
-			int						compression)
+		public PgpCompressedDataGenerator(CompressionAlgorithmTag algorithm, int compression)
 		{
 			switch (algorithm)
 			{
@@ -65,8 +61,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 		/// <exception cref="ArgumentNullException"></exception>
 		/// <exception cref="InvalidOperationException"></exception>
 		/// <exception cref="IOException"></exception>
-		public Stream Open(
-			Stream outStr)
+		public Stream Open(Stream outStr)
 		{
 			if (dOut != null)
 				throw new InvalidOperationException("generator already in open state");
@@ -106,9 +101,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 		/// <exception cref="InvalidOperationException"></exception>
 		/// <exception cref="IOException"></exception>
 		/// <exception cref="PgpException"></exception>
-		public Stream Open(
-			Stream	outStr,
-			byte[]	buffer)
+		public Stream Open(Stream outStr, byte[] buffer)
 		{
 			if (dOut != null)
 				throw new InvalidOperationException("generator already in open state");
@@ -130,21 +123,21 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 
 			switch (algorithm)
 			{
-			case CompressionAlgorithmTag.Uncompressed:
-				dOut = pkOut;
-				break;
-			case CompressionAlgorithmTag.Zip:
-                dOut = Zip.CompressOutput(pkOut, compression, true);
-                break;
-			case CompressionAlgorithmTag.ZLib:
-				dOut = ZLib.CompressOutput(pkOut, compression, true);
-				break;
-			case CompressionAlgorithmTag.BZip2:
-				dOut = Bzip2.CompressOutput(pkOut, true);
-				break;
-			default:
-				// Constructor should guard against this possibility
-				throw new InvalidOperationException();
+                case CompressionAlgorithmTag.Uncompressed:
+                    dOut = pkOut;
+                    break;
+                case CompressionAlgorithmTag.Zip:
+                    dOut = Zip.CompressOutput(pkOut, compression, true);
+                    break;
+                case CompressionAlgorithmTag.ZLib:
+                    dOut = ZLib.CompressOutput(pkOut, compression, true);
+                    break;
+                case CompressionAlgorithmTag.BZip2:
+                    dOut = Bzip2.CompressOutput(pkOut, true);
+                    break;
+                default:
+                    // Constructor should guard against this possibility
+                    throw new InvalidOperationException();
 			}
 		}
 

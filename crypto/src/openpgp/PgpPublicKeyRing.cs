@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.IO;
 
@@ -14,13 +15,11 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
     /// or construct one of these you should use the <c>PgpPublicKeyRingBundle</c> class.
     /// </p>
     /// </remarks>
-    public class PgpPublicKeyRing
-        : PgpKeyRing
+    public class PgpPublicKeyRing : PgpKeyRing
     {
         private readonly IList<PgpPublicKey> keys;
 
-        public PgpPublicKeyRing(
-            byte[] encoding)
+        public PgpPublicKeyRing(byte[] encoding)
             : this(new MemoryStream(encoding, false))
         {
         }
@@ -30,8 +29,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
             this.keys = pubKeys;
         }
 
-        public PgpPublicKeyRing(
-            Stream inputStream)
+        public PgpPublicKeyRing(Stream inputStream)
         {
             this.keys = new List<PgpPublicKey>();
 
@@ -40,8 +38,8 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
             PacketTag initialTag = bcpgInput.SkipMarkerPackets();
             if (initialTag != PacketTag.PublicKey && initialTag != PacketTag.PublicSubkey)
             {
-                throw new IOException("public key ring doesn't start with public key tag: "
-                    + "tag 0x" + ((int)initialTag).ToString("X"));
+                throw new IOException(
+                    $"public key ring doesn't start with public key tag: tag 0x{(int)initialTag:X}");
             }
 
             PublicKeyPacket pubPk = ReadPublicKeyPacket(bcpgInput);
