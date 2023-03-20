@@ -100,7 +100,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
             Stream outStr)
         {
             if (outStr == null)
-                throw new ArgumentNullException("outStr");
+                throw new ArgumentNullException(nameof(outStr));
 
             foreach (PgpPublicKey k in keys)
             {

@@ -81,7 +81,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 			if (pkOut != null)
 				throw new InvalidOperationException("generator already in open state");
 			if (outStr == null)
-				throw new ArgumentNullException("outStr");
+				throw new ArgumentNullException(nameof(outStr));
 
 			// Do this first, since it might throw an exception
 			long unixMs = DateTimeUtilities.DateTimeToUnixMs(modificationTime);
@@ -126,7 +126,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 			if (pkOut != null)
 				throw new InvalidOperationException("generator already in open state");
 			if (outStr == null)
-				throw new ArgumentNullException("outStr");
+				throw new ArgumentNullException(nameof(outStr));
 
 			// Do this first, since it might throw an exception
 			long unixMs = DateTimeUtilities.DateTimeToUnixMs(modificationTime);

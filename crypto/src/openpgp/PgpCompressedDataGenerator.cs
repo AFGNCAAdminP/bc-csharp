@@ -34,7 +34,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 				case CompressionAlgorithmTag.BZip2:
 					break;
 				default:
-					throw new ArgumentException("unknown compression algorithm", "algorithm");
+					throw new ArgumentException("unknown compression algorithm", nameof(algorithm));
 			}
 
 			if (compression != JZlib.Z_DEFAULT_COMPRESSION)
@@ -71,7 +71,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 			if (dOut != null)
 				throw new InvalidOperationException("generator already in open state");
 			if (outStr == null)
-				throw new ArgumentNullException("outStr");
+				throw new ArgumentNullException(nameof(outStr));
 
 			this.pkOut = new BcpgOutputStream(outStr, PacketTag.CompressedData);
 
@@ -113,9 +113,9 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 			if (dOut != null)
 				throw new InvalidOperationException("generator already in open state");
 			if (outStr == null)
-				throw new ArgumentNullException("outStr");
+				throw new ArgumentNullException(nameof(outStr));
 			if (buffer == null)
-				throw new ArgumentNullException("buffer");
+				throw new ArgumentNullException(nameof(buffer));
 
 			this.pkOut = new BcpgOutputStream(outStr, PacketTag.CompressedData, buffer);
 

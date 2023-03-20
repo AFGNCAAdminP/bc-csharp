@@ -23,7 +23,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
             AsymmetricKeyParameter	privateKey)
         {
 			if (!privateKey.IsPrivate)
-				throw new ArgumentException("Expected a private key", "privateKey");
+				throw new ArgumentException("Expected a private key", nameof(privateKey));
 
             this.keyID = keyID;
             this.publicKeyPacket = publicKeyPacket;

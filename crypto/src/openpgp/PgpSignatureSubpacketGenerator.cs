@@ -134,7 +134,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
         public void AddSignerUserId(bool isCritical, string userId)
         {
             if (userId == null)
-                throw new ArgumentNullException("userId");
+                throw new ArgumentNullException(nameof(userId));
 
             list.Add(new SignerUserId(isCritical, userId));
         }
@@ -142,7 +142,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
         public void SetSignerUserId(bool isCritical, byte[] rawUserId)
         {
             if (rawUserId == null)
-                throw new ArgumentNullException("rawUserId");
+                throw new ArgumentNullException(nameof(rawUserId));
 
             list.Add(new SignerUserId(isCritical, false, rawUserId));
         }
@@ -191,7 +191,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 
         /// <summary>
         /// Sets revocation reason sub packet
-        /// </summary>	    
+        /// </summary>
         public void SetRevocationReason(bool isCritical, RevocationReasonTag reason, string description)
 		{
 			list.Add(new RevocationReason(isCritical, reason, description));
@@ -210,7 +210,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 
         /// <summary>
         /// Sets issuer key sub packet
-        /// </summary>	
+        /// </summary>
         public void SetIssuerKeyID(bool isCritical, long keyID)
 		{
 			list.Add(new IssuerKeyId(isCritical, keyID));

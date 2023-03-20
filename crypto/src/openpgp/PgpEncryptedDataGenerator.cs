@@ -435,7 +435,7 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
 			if (methods.Count == 0)
 				throw new InvalidOperationException("No encryption methods specified");
 			if (outStr == null)
-				throw new ArgumentNullException("outStr");
+				throw new ArgumentNullException(nameof(outStr));
 
 			pOut = new BcpgOutputStream(outStr);
 
